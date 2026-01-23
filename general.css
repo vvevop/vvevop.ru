@@ -1,0 +1,243 @@
+/* === ОБЩИЕ СТИЛИ И ФОН === */
+
+@import url('https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,100..900;1,100..900&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Exo 2", sans-serif;
+
+    background-color: #0f0f0f;
+    color: #fff;
+    
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+main {
+    flex: 1;
+}
+
+.container {
+    width: 90%;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+#snowCanvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: -1;
+    pointer-events: none;
+}
+
+.glass {
+    background: rgba(255, 255, 255, 0.01); 
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    border-radius: 20px;
+}
+
+/* === HEADER === */
+
+header {
+    border-bottom: 1px solid #333;
+    display: flex;
+    flex-direction: column;
+}
+
+.logo-area, .nav-area {
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* ЛОГО И НИК */
+
+.logo-area {
+    border-bottom: 1px solid #333;
+}
+
+.logo-content {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.avatar {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.nickname {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: #fcc5e3;
+    text-shadow: 0 0 20px #7a566a;
+}
+
+/* НАВИГАЦИЯ */
+
+.nav-list {
+    display: flex;
+    list-style: none;
+    gap: 4vw;
+    flex-wrap: wrap;
+    justify-content: center;
+    transition: all 0.3s ease-in-out;
+}
+
+.nav-link {
+    position: relative;
+    text-decoration: none;
+    color: #fff;
+    font-size: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.3s ease-in-out;
+}
+
+.icon {
+    width: 22px;
+    height: 22px;
+    fill: currentColor;
+    transition: all 0.3s ease;
+}
+
+.nav-link::after {
+    content: "";
+    position: absolute;
+    bottom: -12px;
+    left: 50%;
+    transform: translateX(-50%);
+    height: 4px;
+    background-color: #fcc5e3;
+    border-radius: 10px;
+    box-shadow: 0 0 10px #fcc5e3;
+    transition: all 0.3s ease; 
+    width: 0;
+    opacity: 0;
+}
+
+.nav-link.active {
+    color: #fcc5e3;
+    text-shadow: 0 0 10px #fcc5e3;
+}
+
+.nav-link.active .icon {
+    fill: #fcc5e3;
+    filter: drop-shadow(0 0 8px #fcc5e3);
+}
+
+.nav-link.active::after {
+    width: 4px;
+    opacity: 1;
+    background-color: #fcc5e3;
+}
+
+.nav-list:has(.nav-link:hover) .nav-link:not(:hover) {
+    opacity: 0.5;
+    filter: blur(1px);
+    color: #fff;
+    text-shadow: none;
+}
+
+.nav-list:has(.nav-link:hover) .nav-link.active:not(:hover)::after {
+    background-color: #fff;
+    box-shadow: none;
+    opacity: 0.5;
+    width: 4px;
+}
+
+.nav-list:has(.nav-link:hover) .nav-link:not(:hover) .icon {
+    fill: #fff;
+    filter: none;
+}
+
+.nav-link:hover {
+    color: #fcc5e3 !important;
+    text-shadow: 0 0 10px #fcc5e3 !important;
+    opacity: 1 !important;
+    filter: blur(0) !important;
+}
+
+.nav-link:hover .icon {
+    fill: #fcc5e3 !important;
+    filter: drop-shadow(0 0 8px #fcc5e3) !important;
+}
+
+.nav-link:hover::after {
+    width: 100% !important;
+    opacity: 1 !important;
+    background-color: #fcc5e3 !important;
+    box-shadow: 0 0 10px #fcc5e3 !important;
+}
+
+/* === FOOTER === */
+footer {
+    padding: 40px 0;
+    border-top: 1px solid #333;
+    text-align: center;
+    width: 100%;
+    font-size: 1.1rem;
+}
+
+
+
+/* === АДАПТИВ ПОД ДЕСКТОП === */
+@media (min-width: 1024px) {
+    header {
+        flex-direction: row;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .logo-area {
+        border-bottom: none;
+        border-right: 1px solid #333;
+    }
+
+    .nav-area {
+        border-left: 1px solid #333;
+        margin-left: -1px;
+    }
+
+    .avatar {
+        width: 100px;
+        height: 100px;
+    }
+
+    .nickname {
+        font-size: 3.5rem;
+        margin-top: -14px;
+    }
+
+    .nav-link {
+        font-size: 1.5rem;
+        gap: 12px;
+    }
+
+    .icon {
+        width: 28px;
+        height: 28px;
+    }
+
+    .nav-list {
+        gap: 40px;
+    }
+}
