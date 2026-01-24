@@ -1,0 +1,174 @@
+/* === 1. СЕТКА === */
+
+.projects-grid {
+    display: grid;
+    grid-template-columns: 1fr; /* 1 колонка по умолчанию */
+    gap: 25px;
+    justify-items: center;
+    width: 100%;
+}
+
+/* === 2. КАРТОЧКА ПРОЕКТА === */
+
+.project-card {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 450px;
+    height: 100%;
+    padding: 0 !important;
+    overflow: hidden; /* Чтобы баннер не вылезал при зуме */
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    transition: transform 0.3s ease, border-color 0.3s ease;
+}
+
+/* БАННЕР */
+.project-banner {
+    width: 100%;
+    aspect-ratio: 16 / 9; /* пропорции */
+    overflow: hidden;
+    background: #111;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.project-banner img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s cubic-bezier(0.2, 1, 0.2, 1);
+}
+
+/* КОНТЕНТ */
+.project-content {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
+.project-title {
+    color: #fcc5e3;
+    font-size: 1.4rem;
+    margin-bottom: 10px;
+    font-weight: 700;
+}
+
+.project-desc {
+    color: #ddd;
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin-bottom: 25px;
+}
+
+/* === 3. ФУТЕР (СТАТУС И КНОПКА) === */
+
+.project-footer {
+    margin-top: auto;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    width: 100%;
+}
+
+/* СТАТУС */
+.status {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 7px 12px;
+    border-radius: 10px;
+    font-size: 0.85rem;
+    font-weight: 700;
+    white-space: nowrap;
+    flex-shrink: 0;
+}
+
+.status-icon {
+    width: 14px;
+    height: 14px;
+    fill: currentColor;
+}
+
+.status-active { color: #2ed573; background: rgba(46, 213, 115, 0.1); border: 1px solid rgba(46, 213, 115, 0.2); }
+.status-dev { color: #ffa502; background: rgba(255, 165, 2, 0.1); border: 1px solid rgba(255, 165, 2, 0.2); }
+.status-idea { color: #a55eea; background: rgba(165, 94, 234, 0.1); border: 1px solid rgba(165, 94, 234, 0.2); }
+
+/* КНОПКА ОТКРЫТЬ */
+.project-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 8px 15px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    text-decoration: none;
+    color: #fff;
+    font-size: 0.9rem;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    flex-shrink: 0;
+}
+
+.btn-icon {
+    width: 20px !important;
+    height: 20px !important;
+    min-width: 20px;
+    min-height: 20px;
+    display: block;
+    flex-shrink: 0;
+}
+
+/* === 4. АДАПТИВНОСТЬ === */
+
+/* Смартфоны до 360px */
+@media (max-width: 360px) {
+    .project-footer {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    .status, .project-btn {
+        width: 100%;
+        justify-content: center;
+    }
+}
+
+/* Планшеты (от 700px) */
+@media (min-width: 700px) {
+    .projects-grid {
+        grid-template-columns: repeat(2, 1fr);
+        justify-items: stretch;
+    }
+    .project-card {
+        max-width: none;
+    }
+    h2 { font-size: 1.8rem; }
+}
+
+/* Десктоп (от 1024px) */
+@media (min-width: 1024px) {
+    .projects-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 30px;
+    }
+
+    /* Ховеры только для ПК */
+    .project-card:hover {
+        transform: translateY(-8px);
+    }
+
+    .project-card:hover .project-banner img {
+        transform: scale(1.1);
+    }
+
+    .project-btn:hover {
+        background: #24A1DE; /* Синий ТГ */
+        border-color: #24A1DE;
+        box-shadow: 0 0 15px rgba(36, 161, 222, 0.5);
+    }
+}
