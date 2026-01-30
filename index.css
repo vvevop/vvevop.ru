@@ -1,7 +1,6 @@
 /* === MAIN === */
 
 article p {
-    display: flex;
     max-width: 800px;
     margin: 0 auto;
 }
@@ -18,9 +17,4 @@ h3 {
 article p {
     color: #ddd;
     font-size: 1.1rem;
-}
-
-/* === ДЛЯ ДЕСКТОПА (от 1024px) === */
-@media (min-width: 1024px) {
-    
 }
