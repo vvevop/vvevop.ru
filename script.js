@@ -81,3 +81,25 @@ window.addEventListener('resize', () => {
 setCanvasSize();
 createParticles();
 animate();
+
+// Fullscreen avatar preview logic
+document.addEventListener('DOMContentLoaded', () => {
+    const avatar = document.querySelector('.avatar');
+    const fullscreenOverlay = document.getElementById('fullscreen-overlay');
+    const fullscreenAvatar = document.getElementById('fullscreen-avatar');
+
+    if (avatar && fullscreenOverlay && fullscreenAvatar) {
+        avatar.addEventListener('click', () => {
+            fullscreenAvatar.src = avatar.src;
+            fullscreenOverlay.style.display = 'flex'; // Show the overlay
+        });
+
+        // Hide the overlay when clicking anywhere on it
+        fullscreenOverlay.addEventListener('click', (event) => {
+            // Check if the click was directly on the overlay, not on the image inside
+            if (event.target === fullscreenOverlay) {
+                fullscreenOverlay.style.display = 'none';
+            }
+        });
+    }
+});
