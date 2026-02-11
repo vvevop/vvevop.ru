@@ -65,7 +65,14 @@
 /* === АДАПТИВНОСТЬ === */
 @media (min-width: 700px) {
     .links-grid {
-        grid-template-columns: repeat(2, 1fr);
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 20px;
+    }
+    .link-card {
+        width: calc(50% - 10px);
+        max-width: 400px;
     }
 }
 
