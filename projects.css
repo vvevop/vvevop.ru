@@ -1,175 +1,121 @@
-/* === 1. СЕТКА === */
+/* === projects.css === */
 
+/* Сетка для карточек проектов */
 .projects-grid {
     display: grid;
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); /* Адаптивная сетка */
     gap: 25px;
-    justify-items: center;
-    width: 100%;
-    align-items: start; 
 }
 
-/* === 2. КАРТОЧКА ПРОЕКТА === */
-
+/* Стили для карточки проекта */
 .project-card {
+    padding: 0 !important; /* Убираем внутренние отступы, чтобы баннер прилегал к краям */
     display: flex;
     flex-direction: column;
-    width: 100%;
-    max-width: 450px;
-    height: auto;
-    padding: 0 !important;
-    overflow: hidden;
-    background: rgba(255, 255, 255, 0.03);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 20px;
-    transition: transform 0.3s ease, border-color 0.3s ease;
+    overflow: hidden; /* Скрытие выходящего за рамки контента (для скругленных углов) */
 }
 
-/* БАННЕР */
+/* Стили для карточки проекта при наведении */
+.project-card:hover {
+    transform: translateY(-8px);
+    border-color: rgba(255, 255, 255, 0.2);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.6);
+}
+
+/* Стили для баннера проекта */
 .project-banner {
     width: 100%;
-    aspect-ratio: 16 / 9;
+    aspect-ratio: 16 / 9; /* Соотношение сторон 16:9 */
+    background: #000;
     overflow: hidden;
-    background: #111;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    position: relative;
+    border-bottom: 1px solid var(--card-border);
 }
 
+/* Стили для изображения в баннере */
 .project-banner img {
     width: 100%;
     height: 100%;
-    object-fit: cover;
-    transition: transform 0.6s cubic-bezier(0.2, 1, 0.2, 1);
+    object-fit: cover; /* Изображение будет масштабироваться, чтобы заполнить контейнер */
+    transition: transform 0.5s ease;
 }
 
-/* КОНТЕНТ */
+/* Анимация изображения в баннере при наведении на карточку */
+.project-card:hover .project-banner img {
+    transform: scale(1.05);
+}
+
+/* Стили для контентной части карточки */
 .project-content {
-    padding: 20px;
+    padding: 24px;
     display: flex;
     flex-direction: column;
-    flex: 1;
+    flex: 1; /* Занимает все доступное пространство */
 }
 
+/* Стили для заголовка проекта */
 .project-title {
-    color: #fcc5e3;
-    font-size: 1.4rem;
-    margin-bottom: 10px;
+    font-size: 1.3rem;
     font-weight: 700;
+    color: var(--text-main);
+    margin-bottom: 10px;
 }
 
+/* Стили для описания проекта */
 .project-desc {
-    color: #ddd;
+    color: var(--text-muted);
     font-size: 0.95rem;
-    line-height: 1.6;
+    line-height: 1.5;
     margin-bottom: 25px;
 }
 
-/* === 3. ФУТЕР (СТАТУС И КНОПКА) === */
-
+/* Стили для подвала карточки */
 .project-footer {
-    margin-top: auto;
+    margin-top: auto; /* Прижимает подвал к низу карточки */
     display: flex;
-    flex-direction: row;
-    align-items: center;
     justify-content: space-between;
-    gap: 10px;
-    width: 100%;
-}
-
-/* СТАТУС */
-.status {
-    display: flex;
     align-items: center;
-    gap: 8px;
-    padding: 7px 12px;
-    border-radius: 10px;
-    font-size: 0.85rem;
-    font-weight: 700;
-    white-space: nowrap;
-    flex-shrink: 0;
 }
 
-.status-icon {
-    width: 14px;
-    height: 14px;
-    fill: currentColor;
+/* Стили для статусов проектов (бейджи) */
+.status {
+    padding: 6px 12px;
+    border-radius: 100px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
 }
 
-.status-active { color: #2ed573; background: rgba(46, 213, 115, 0.1); border: 1px solid rgba(46, 213, 115, 0.2); }
-.status-dev { color: #ffa502; background: rgba(255, 165, 2, 0.1); border: 1px solid rgba(255, 165, 2, 0.2); }
-.status-idea { color: #a55eea; background: rgba(165, 94, 234, 0.1); border: 1px solid rgba(165, 94, 234, 0.2); }
+.status-active { color: #10b981; background: rgba(16, 185, 129, 0.1); border: 1px solid rgba(16, 185, 129, 0.2); }
+.status-dev { color: #f59e0b; background: rgba(245, 158, 11, 0.1); border: 1px solid rgba(245, 158, 11, 0.2); }
+.status-idea { color: #8b5cf6; background: rgba(139, 92, 246, 0.1); border: 1px solid rgba(139, 92, 246, 0.2); }
 
-/* КНОПКА ОТКРЫТЬ */
+/* Стили для кнопки проекта */
 .project-btn {
     display: flex;
     align-items: center;
-    justify-content: center;
     gap: 8px;
-    padding: 8px 15px;
+    padding: 8px 16px;
     background: rgba(255, 255, 255, 0.05);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 12px;
+    border: 1px solid var(--card-border);
+    border-radius: 100px;
+    color: var(--text-main);
     text-decoration: none;
-    color: #fff;
     font-size: 0.9rem;
-    font-weight: 600;
+    font-weight: 500;
     transition: all 0.3s ease;
-    flex-shrink: 0;
 }
 
+/* Стили для кнопки проекта при наведении */
+.project-btn:hover {
+    background: #24A1DE; /* Цвет Telegram */
+    border-color: #24A1DE;
+    color: #fff;
+    box-shadow: 0 0 15px rgba(36, 161, 222, 0.4);
+}
+
+/* Стили для иконки в кнопке */
 .btn-icon {
-    width: 20px !important;
-    height: 20px !important;
-    min-width: 20px;
-    min-height: 20px;
-    display: block;
-    flex-shrink: 0;
-}
-
-/* === 4. АДАПТИВНОСТЬ === */
-
-/* Смартфоны до 360px */
-@media (max-width: 360px) {
-    .project-footer {
-        flex-direction: column;
-        align-items: stretch;
-    }
-    .status, .project-btn {
-        width: 100%;
-        justify-content: center;
-    }
-}
-
-/* Планшеты (от 740px) */
-@media (min-width: 740px) {
-    .projects-grid {
-        grid-template-columns: repeat(2, 1fr);
-        justify-items: stretch;
-    }
-    .project-card {
-        max-width: none;
-    }
-    h2 { font-size: 1.8rem; }
-}
-
-/* Десктоп (от 1100px) */
-@media (min-width: 1100px) {
-    .projects-grid {
-        grid-template-columns: repeat(3, 1fr);
-        gap: 30px;
-    }
-
-    /* Ховеры только для ПК */
-    .project-card:hover {
-        transform: translateY(-8px);
-    }
-
-    .project-card:hover .project-banner img {
-        transform: scale(1.1);
-    }
-
-    .project-btn:hover {
-        background: #24A1DE;
-        border-color: #24A1DE;
-        box-shadow: 0 0 15px rgba(36, 161, 222, 0.5);
-    }
+    width: 18px; height: 18px;
 }

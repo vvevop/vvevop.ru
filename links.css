@@ -1,7 +1,7 @@
-/* === СЕТКА (МОБИЛЬНАЯ) === */
+/* === СЕТКА (МОБИЛЬНАЯ ВЕРСИЯ) === */
 .links-grid {
     display: grid;
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr; /* Одна колонка по умолчанию */
     gap: 20px;
     width: 100%;
 }
@@ -22,7 +22,7 @@
 .link-icon-area {
     width: 45px;
     height: 45px;
-    flex-shrink: 0;
+    flex-shrink: 0; /* Иконка не будет сжиматься */
     display: flex;
     align-items: center;
     justify-content: center;
@@ -40,7 +40,7 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    overflow: hidden;
+    overflow: hidden; /* Скрытие текста, который не помещается */
     flex: 1; 
 }
 
@@ -57,13 +57,14 @@
     font-size: 0.95rem;
     margin-top: 3px;
     font-family: "Exo 2", sans-serif;
-    white-space: nowrap;
+    white-space: nowrap; /* Запрет переноса строки */
     overflow: hidden;
-    text-overflow: ellipsis;
+    text-overflow: ellipsis; /* Добавление многоточия, если текст не помещается */
 }
 
 /* === АДАПТИВНОСТЬ === */
 @media (min-width: 700px) {
+    /* На планшетах и выше - flex-сетка */
     .links-grid {
         display: flex;
         flex-wrap: wrap;
@@ -71,16 +72,14 @@
         gap: 20px;
     }
     .link-card {
-        width: calc(50% - 10px);
+        width: calc(50% - 10px); /* Две карточки в ряд */
         max-width: 400px;
     }
 }
 
 @media (min-width: 1024px) {
+    /* На десктопах - три карточки в ряд */
     .links-grid {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
         gap: 30px;
     }
 
@@ -88,7 +87,7 @@
         width: calc((100% - 60px) / 3);
     }
 
-    /* Ховеры только для десктопа */
+    /* Эффекты при наведении только для десктопов */
     .link-card:hover {
         border-color: var(--theme); 
         box-shadow: 0 0 15px -5px var(--theme);
