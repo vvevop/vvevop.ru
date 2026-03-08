@@ -153,7 +153,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (langToggle) {
         langToggle.addEventListener('click', () => {
-            const currentPath = window.location.pathname;
+            let currentPath = window.location.pathname;
+
+            // Если путь - корень сайта, считаем его как /index.html
+            if (currentPath === '/') {
+                currentPath = '/index.html';
+            }
+
             const isEnglish = currentPath.includes('.en.html');
 
             let newPath;
