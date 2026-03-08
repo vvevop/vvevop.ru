@@ -129,3 +129,44 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 });
+
+// --- Логика для переключения языка ---
+document.addEventListener('DOMContentLoaded', () => {
+    const langToggle = document.getElementById('lang-toggle');
+    const langIcon = langToggle ? langToggle.querySelector('.icon') : null;
+
+    const fetchFlagIcon = async (lang) => {
+        const response = await fetch(`svg/${lang.toUpperCase()}.svg`);
+        const svg = await response.text();
+        return svg;
+    };
+
+    const updateFlag = async () => {
+        if (!langIcon) return;
+        const currentPath = window.location.pathname;
+        const isEnglish = currentPath.includes('.en.html');
+        
+        const langToLoad = isEnglish ? 'RU' : 'US';
+        const flagSvg = await fetchFlagIcon(langToLoad);
+        langIcon.innerHTML = flagSvg;
+    };
+
+    if (langToggle) {
+        langToggle.addEventListener('click', () => {
+            const currentPath = window.location.pathname;
+            const isEnglish = currentPath.includes('.en.html');
+
+            let newPath;
+            if (isEnglish) {
+                // Переключаем на русский
+                newPath = currentPath.replace('.en.html', '.html');
+            } else {
+                // Переключаем на английский
+                newPath = currentPath.replace('.html', '.en.html');
+            }
+            window.location.href = newPath;
+        });
+        
+        updateFlag();
+    }
+});

@@ -86,20 +86,18 @@
     .link-card {
         width: calc((100% - 60px) / 3);
     }
+}
 
-    /* Эффекты при наведении только для десктопов */
-    .link-card:hover {
-        border-color: var(--theme); 
-        box-shadow: 0 0 15px -5px var(--theme);
-        background: linear-gradient(90deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.01) 100%);
-    }
-
-    .link-card:hover .btn-icon {
-        transform: scale(1.1);
-        filter: drop-shadow(0 0 5px var(--theme));
-    }
-
-    .link-card:hover .platform-name {
-        color: var(--theme);
-    }
+/* Эффекты при наведении */
+.link-card:hover {
+    border-color: var(--theme); 
+    box-shadow: 0 0 15px -5px var(--theme);
+    background: linear-gradient(90deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.01) 100%);
+}
+.link-card:hover .btn-icon {
+    transform: scale(1.1);
+    filter: drop-shadow(0 0 5px var(--theme));
+}
+.link-card:hover .platform-name {
+    color: var(--theme);
 }

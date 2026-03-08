@@ -88,10 +88,24 @@ header {
     border: 1px solid var(--card-border);
     border-radius: 100px;
     display: flex;
-    justify-content: space-between;
+    justify-content: center; /* Центральное выравнивание */
     align-items: center;
     padding: 10px 20px;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5); /* Тень для объема */
+}
+
+/* Области в шапке */
+.logo-area, .lang-area {
+    flex: 1;
+}
+.nav-area {
+    flex: 2;
+    display: flex;
+    justify-content: center;
+}
+.lang-area {
+    display: flex;
+    justify-content: flex-end;
 }
 
 /* Стили для логотипа и никнейма */
@@ -210,6 +224,7 @@ h2::before {
     background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
+    word-spacing: 0.1em;
 }
 
 /* Стили для подзаголовка */
@@ -235,16 +250,52 @@ footer {
 /* Адаптив для мобильных устройств (Шапка) */
 @media (max-width: 670px) {
     header {
-        flex-direction: column;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        align-items: center; /* to vertically align logo and flag */
         border-radius: 24px;
         padding: 15px;
-        gap: 15px;
+        row-gap: 15px; /* only apply gap between rows */
         top: 10px;
     }
-    .nav-list { width: 100%; justify-content: center; flex-wrap: wrap; }
-    .nav-link { padding: 8px 12px; font-size: 0.9rem; }
-    .nav-link span { display: none; } /* Скрываем текст, оставляем иконки на мобильных устройствах */
-    .icon { width: 22px; height: 22px; }
+
+    .logo-area, .lang-area, .nav-area {
+        flex: initial; /* Reset flex properties */
+    }
+
+    .logo-area {
+        order: 1;
+    }
+
+    .lang-area {
+        order: 2;
+    }
+
+    .nav-area {
+        order: 3;
+        flex-basis: 100%;
+    }
+
+    .nav-list {
+        width: 100%;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+
+    .nav-link {
+        padding: 8px 12px;
+        font-size: 0.9rem;
+    }
+
+    .nav-link span {
+        display: none; /* Скрываем текст, оставляем иконки на мобильных устройствах */
+    }
+
+    .icon {
+        width: 22px;
+        height: 22px;
+    }
 }
 
 /* Оверлей для полноэкранного изображения */
@@ -258,3 +309,24 @@ footer {
     transition: opacity 0.3s ease;
 }
 .fullscreen-image-container img { max-width: 90vw; max-height: 90vh; border-radius: 12px; }
+
+/* === Стили для кнопки смены языка === */
+.lang-toggle-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.lang-toggle-btn .icon {
+    width: 32px; /* Увеличенный размер */
+    height: 32px;
+    fill: currentColor;
+    transition: all 0.3s ease;
+}
+
+
+
