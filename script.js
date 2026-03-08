@@ -136,7 +136,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const langIcon = langToggle ? langToggle.querySelector('.icon') : null;
 
     const fetchFlagIcon = async (lang) => {
-        const response = await fetch(`svg/${lang.toUpperCase()}.svg`);
+        const response = await fetch(`/svg/${lang.toUpperCase()}.svg`);
         const svg = await response.text();
         return svg;
     };
@@ -144,7 +144,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const updateFlag = async () => {
         if (!langIcon) return;
         const currentPath = window.location.pathname;
-        const isEnglish = currentPath.includes('.en.html');
+        const isEnglish = currentPath.startsWith('/en');
         
         const langToLoad = isEnglish ? 'RU' : 'US';
         const flagSvg = await fetchFlagIcon(langToLoad);
@@ -153,22 +153,20 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (langToggle) {
         langToggle.addEventListener('click', () => {
-            let currentPath = window.location.pathname;
-
-            // Если путь - корень сайта, считаем его как /index.html
-            if (currentPath === '/') {
-                currentPath = '/index.html';
-            }
-
-            const isEnglish = currentPath.includes('.en.html');
+            const currentPath = window.location.pathname;
+            const isEnglish = currentPath.startsWith('/en');
 
             let newPath;
             if (isEnglish) {
-                // Переключаем на русский
-                newPath = currentPath.replace('.en.html', '.html');
+                // С английского на русский: убираем /en
+                // Пример: /en/links -> /links
+                // Пример: /en/ -> /
+                newPath = currentPath.substring(3) || '/';
             } else {
-                // Переключаем на английский
-                newPath = currentPath.replace('.html', '.en.html');
+                // С русского на английский: добавляем /en
+                // Пример: /links -> /en/links
+                // Пример: / -> /en/
+                newPath = '/en' + currentPath;
             }
             window.location.href = newPath;
         });

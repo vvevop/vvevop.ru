@@ -1,0 +1,17 @@
+# Отключаем автоматическое сопоставление файлов, чтобы избежать конфликтов
+Options -MultiViews
+
+RewriteEngine On
+
+# Правило 0: Принудительно убираем .html из URL, если кто-то зашел по старой ссылке
+RewriteCond %{THE_REQUEST} \s/+(.+?)\.html[\s?] [NC]
+RewriteRule ^ /%1 [R=301,L]
+
+# Правило 1: Убираем слеш в конце, если это не реальная папка
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)/$ /$1 [R=301,L]
+
+# Правило 2: "Под капотом" добавляем .html, если у URL нет расширения
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^([^\.]+)$ $1.html [L]
