@@ -1,0 +1,135 @@
+:root {
+    --night: #0d1827;
+    --deep: #15263d;
+    --frost: #e9f1f8;
+    --mist: #8ea4bd;
+    --lamp: #f3c982;
+    color-scheme: dark;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+}
+
+html {
+    height: 100%;
+}
+
+body {
+    min-height: 100%;
+    min-height: 100svh;
+    display: grid;
+    grid-template-rows: auto 1fr;
+    padding: clamp(1.5rem, 5vw, 4rem);
+    overflow: hidden;
+    position: relative;
+    background: linear-gradient(180deg, var(--deep), var(--night));
+    color: var(--frost);
+    font-family: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
+}
+
+/* Снег: два слоя, медленно падают с разной скоростью */
+body::before,
+body::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+}
+
+body::before {
+    background-image:
+        radial-gradient(2px 2px at 20px 30px, #fff, transparent),
+        radial-gradient(1.5px 1.5px at 90px 140px, #fff, transparent),
+        radial-gradient(2.5px 2.5px at 160px 70px, #fff, transparent),
+        radial-gradient(1px 1px at 230px 200px, #fff, transparent),
+        radial-gradient(2px 2px at 270px 260px, #fff, transparent);
+    background-size: 300px 300px;
+    opacity: 0.55;
+    animation: fall 28s linear infinite;
+}
+
+body::after {
+    background-image:
+        radial-gradient(3px 3px at 60px 80px, #fff, transparent),
+        radial-gradient(2px 2px at 220px 190px, #fff, transparent),
+        radial-gradient(3px 3px at 380px 330px, #fff, transparent),
+        radial-gradient(2px 2px at 450px 120px, #fff, transparent);
+    background-size: 500px 500px;
+    opacity: 0.25;
+    animation: fall 52s linear infinite;
+}
+
+@keyframes fall {
+    to { background-position: 0 300px; }
+}
+
+body::after {
+    animation-name: fall-large;
+}
+
+@keyframes fall-large {
+    to { background-position: 0 500px; }
+}
+
+/* Тёплый свет из «окна» в углу: единственный яркий акцент */
+.glow {
+    position: fixed;
+    right: -10vmax;
+    bottom: -14vmax;
+    width: 60vmax;
+    height: 60vmax;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(243, 201, 130, 0.30), rgba(243, 201, 130, 0) 65%);
+    pointer-events: none;
+    animation: breathe 9s ease-in-out infinite;
+}
+
+@keyframes breathe {
+    50% { opacity: 0.6; transform: scale(1.06); }
+}
+
+.brand {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    color: var(--mist);
+    font-size: 1.05rem;
+    letter-spacing: 0.04em;
+}
+
+.brand::before {
+    content: "";
+    width: 0.55rem;
+    height: 0.55rem;
+    border-radius: 50%;
+    background: var(--lamp);
+    box-shadow: 0 0 0.9rem 0.15rem rgba(243, 201, 130, 0.6);
+}
+
+main {
+    position: relative;
+    z-index: 1;
+    align-self: end;
+    padding-bottom: clamp(0.5rem, 4vh, 3rem);
+}
+
+h1 {
+    max-width: 14ch;
+    font-size: clamp(2.7rem, 9.5vw, 7.5rem);
+    font-weight: 400;
+    line-height: 1.02;
+    letter-spacing: -0.02em;
+    text-wrap: balance;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    body::before,
+    body::after,
+    .glow {
+        animation: none;
+    }
+}
