@@ -3,15 +3,62 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>vvevop</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="icon" type="image/svg" href="panda.svg">
+    <title>vvevop — главная</title>
+    <meta name="description" content="Личный сайт vvevop: проекты, боты и эксперименты.">
+    <link rel="stylesheet" href="index.css">
 </head>
 <body>
     <div class="glow" aria-hidden="true"></div>
-    <p class="brand">vvevop</p>
-    <main>
-        <h1>Скоро здесь что-то будет</h1>
-    </main>
+    <div class="wrap">
+        <header>
+            <a class="brand" href="/">vvevop</a>
+            <nav>
+                <a href="/" class="active">Главная</a>
+                <a href="/projects">Проекты</a>
+                <a href="/links">Ссылки</a>
+                <a href="/en/" class="lang">EN</a>
+            </nav>
+        </header>
+
+        <main>
+            <section class="hero">
+                <div class="avatar" aria-hidden="true">v</div>
+                <div class="hero-text">
+                    <h1>Привет, я <span>vvevop</span></h1>
+                    <p class="lead">Делаю Telegram-ботов, лёгкие сайты и пробую всё, что кажется интересным. Здесь собрано то, что получилось.</p>
+                    <div class="actions">
+                        <a class="btn primary" href="/projects">Мои проекты</a>
+                        <a class="btn ghost" href="/links">Где меня найти</a>
+                    </div>
+                </div>
+            </section>
+
+            <section>
+                <h2>Чем занимаюсь</h2>
+                <div class="cards">
+                    <article class="card">
+                        <h3>Telegram-боты</h3>
+                        <p>Пишу ботов, которые берут на себя рутину.</p>
+                    </article>
+                    <article class="card">
+                        <h3>Сайты</h3>
+                        <p>Делаю быстрые страницы без лишнего.</p>
+                    </article>
+                    <article class="card">
+                        <h3>Эксперименты</h3>
+                        <p>Пробую нейросети, VPN и другие идеи.</p>
+                    </article>
+                </div>
+            </section>
+        </main>
+
+        <footer>
+            <div class="social">
+                <a href="https://github.com/vvevop" target="_blank" rel="noopener">GitHub</a>
+                <a href="https://t.me/vvevop" target="_blank" rel="noopener">Telegram</a>
+            </div>
+            <p>© 2026 vvevop</p>
+        </footer>
+    </div>
 </body>
 </html>
