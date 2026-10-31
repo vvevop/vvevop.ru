@@ -2,12 +2,31 @@ name: Deploy
 on:
   push:
     branches: [main]
+  schedule:
+    - cron: '0 */6 * * *'
+  workflow_dispatch:
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+
+      - name: Fetch Telegram avatar
+        env:
+          TG_BOT_TOKEN: ${{ secrets.TG_BOT_TOKEN }}
+          TG_USER_ID: ${{ secrets.TG_USER_ID }}
+        run: |
+          API="https://api.telegram.org/bot${TG_BOT_TOKEN}"
+          FILE_ID=$(curl -s "$API/getUserProfilePhotos?user_id=${TG_USER_ID}&limit=1" | jq -r '.result.photos[0][-1].file_id')
+          if [ -z "$FILE_ID" ] || [ "$FILE_ID" = "null" ]; then
+            echo "Avatar not found, keeping the old one"
+            exit 0
+          fi
+          FILE_PATH=$(curl -s "$API/getFile?file_id=${FILE_ID}" | jq -r '.result.file_path')
+          mkdir -p img
+          curl -s -o img/avatar.jpg "https://api.telegram.org/file/bot${TG_BOT_TOKEN}/${FILE_PATH}"
+
       - uses: SamKirkland/FTP-Deploy-Action@v4.3.5
         with:
           server: ${{ secrets.FTP_SERVER }}
