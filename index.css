@@ -1,9 +1,4 @@
 :root {
-    --night: #0d1827;
-    --deep: #15263d;
-    --frost: #e9f1f8;
-    --mist: #8ea4bd;
-    --lamp: #f3c982;
     --line: rgba(233, 241, 248, 0.14);
     --serif: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
     color-scheme: dark;
@@ -56,7 +51,7 @@ body::after {
     width: 60vmax;
     height: 60vmax;
     border-radius: 50%;
-    background: radial-gradient(circle, rgba(243, 201, 130, 0.26), transparent 65%);
+    background: radial-gradient(circle, rgba(var(--lamp-rgb), 0.26), transparent 65%);
     pointer-events: none;
     animation: breathe 9s ease-in-out infinite;
 }
@@ -93,7 +88,7 @@ header {
     height: 0.55rem;
     border-radius: 50%;
     background: var(--lamp);
-    box-shadow: 0 0 0.9rem 0.15rem rgba(243, 201, 130, 0.6);
+    box-shadow: 0 0 0.9rem 0.15rem rgba(var(--lamp-rgb), 0.6);
 }
 nav { display: flex; flex-wrap: wrap; gap: clamp(0.9rem, 3vw, 1.75rem); }
 nav a {
@@ -139,7 +134,7 @@ h1 span { color: var(--lamp); }
 }
 .btn:hover { transform: translateY(-2px); border-color: var(--lamp); }
 .btn.primary { background: var(--lamp); border-color: var(--lamp); color: var(--night); }
-.btn.primary:hover { background: #f7d89f; }
+.btn.primary:hover { filter: brightness(1.1); }
 
 .avatar {
     order: 2;
@@ -153,7 +148,7 @@ h1 span { color: var(--lamp); }
     font-family: var(--serif);
     font-size: clamp(3rem, 9vw, 6rem);
     color: var(--lamp);
-    box-shadow: 0 0 4rem rgba(243, 201, 130, 0.18);
+    box-shadow: 0 0 4rem rgba(var(--lamp-rgb), 0.18);
 }
 
 /* Карточки */
@@ -177,7 +172,7 @@ h2 {
     background: rgba(255, 255, 255, 0.035);
     transition: border-color 0.3s, transform 0.3s;
 }
-.card:hover { border-color: rgba(243, 201, 130, 0.5); transform: translateY(-3px); }
+.card:hover { border-color: rgba(var(--lamp-rgb), 0.5); transform: translateY(-3px); }
 .card h3 { margin-bottom: 0.4rem; font-family: var(--serif); font-size: 1.35rem; font-weight: 400; }
 .card p { color: var(--mist); }
 

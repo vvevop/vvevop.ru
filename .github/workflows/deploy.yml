@@ -27,6 +27,11 @@ jobs:
           mkdir -p img
           curl -s -o img/avatar.jpg "https://api.telegram.org/file/bot${TG_BOT_TOKEN}/${FILE_PATH}"
 
+      - name: Build color theme
+        run: |
+          pip install pillow
+          python scripts/theme.py img/avatar.jpg theme.css
+
       - uses: SamKirkland/FTP-Deploy-Action@v4.3.5
         with:
           server: ${{ secrets.FTP_SERVER }}
